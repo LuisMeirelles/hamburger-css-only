@@ -12,12 +12,24 @@ body {
 
 body {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     background-color: black;
 }
 
-.hamburguer {
+.with-x,
+.with-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*
+* style rules for the X hamburger
+* when it is active, the icon becomes a "X"
+*/
+
+.x-hamburger {
     height: 50vh;
     width: 50vh;
     background-color: #333;
@@ -25,7 +37,7 @@ body {
     position: relative;
 }
 
-.hamburguer::before {
+.x-hamburger::before {
     content: '';
     position: absolute;
     width: 70%;
@@ -37,7 +49,7 @@ body {
     transition: transform 0.5s;
 }
 
-.hamburguer::after {
+.x-hamburger::after {
     content: '';
     position: absolute;
     width: 70%;
@@ -49,14 +61,74 @@ body {
     transition: transform 0.5s;
 }
 
-#hamburguer {
+#x-hamburger {
     display: none;
 }
 
-#hamburguer:checked ~ label > .hamburguer::before {
+#x-hamburger:checked ~ label > .x-hamburger::before {
     transform: translate(0, 150%) rotateZ(225deg);
 }
 
-#hamburguer:checked ~ label > .hamburguer::after {
+#x-hamburger:checked ~ label > .x-hamburger::after {
     transform: translate(0, -150%) rotateZ(-225deg);
+}
+
+/*
+* style rules for the arrow hamburger.
+* there are 2 classes: .arrow-right and .arrow-left
+* as its name says, .arrow-right becomes a right arrow when it is active,
+* and .arrow-left becomes a right arrow when it is active
+*/
+
+.arrow-hamburger {
+    height: 50vh;
+    width: 50vh;
+    background-color: #333;
+    border-radius: 10%;
+    position: relative;
+}
+
+.arrow-hamburger::before,
+.arrow-hamburger::after {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 10%;
+    left: 15%;
+    border-radius: calc((50vh * 0.2)/2);
+    background-color: white;
+    transition: transform 0.5s, width 0.5s;
+}
+
+.arrow-hamburger::before {
+    top: 30%;
+}
+
+.arrow-hamburger::after {
+    top: 60%;
+}
+
+#arrow-hamburger {
+    display: none;
+}
+
+#arrow-hamburger:checked ~ label > .arrow-hamburger::before,
+#arrow-hamburger:checked ~ label > .arrow-hamburger::after {
+    width: 35%;
+}
+
+#arrow-hamburger:checked ~ label > .arrow-hamburger.arrow-left::before {
+    transform: translate(50%, 60%) rotateZ(-225deg);
+}
+
+#arrow-hamburger:checked ~ label > .arrow-hamburger.arrow-left::after {
+    transform: translate(50%, -60%) rotateZ(225deg);
+}
+
+#arrow-hamburger:checked ~ label > .arrow-hamburger.arrow-right::before {
+    transform: translate(50%, 60%) rotateZ(225deg);
+}
+
+#arrow-hamburger:checked ~ label > .arrow-hamburger.arrow-right::after {
+    transform: translate(50%, -60%) rotateZ(-225deg);
 }
